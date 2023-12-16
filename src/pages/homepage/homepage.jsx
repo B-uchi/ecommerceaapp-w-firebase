@@ -5,8 +5,6 @@ import CategoryList from '../../components/CategoryList'
 const Homepage = () => {
   return (
     <>
-        <Navbar/>
-
         <main>
             <CategoryList/>
         </main>
