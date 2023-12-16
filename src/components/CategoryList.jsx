@@ -44,7 +44,7 @@ const CategoryList = () => {
   );
 
   return (
-    <div className="flex flex-col w-[100%] parent-div gap-3 mt-3">
+    <div className="flex flex-col w-[95%] mx-auto parent-div gap-3 mt-3">
       <div className=" flex flex-col lg:flex-row gap-3">
         {topLine.map((category) => (
           <Category data={category} />
