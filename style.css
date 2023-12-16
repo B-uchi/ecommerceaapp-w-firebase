@@ -21,4 +21,9 @@
 .category-card:hover{
   transition: .5s ease-in-out;
   background-size: 105%;
+
+}
+.category-card:hover > .label{
+  background-color: white;
+  transition: 200ms ease-in-out;
 }
