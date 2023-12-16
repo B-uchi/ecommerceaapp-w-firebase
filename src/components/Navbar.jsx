@@ -8,10 +8,10 @@ const Navbar = () => {
     <nav className="w-full bg-[#010409] flex justify-center">
       <div className="container p-3 flex justify-between items-center">
         <NavTitle title={"Sub Urban"} />
-        <div className="flex gap-5">
+        <div className="flex items-center gap-5">
           <div className="hidden md:flex gap-3 items-center">
-            <MenuItem title={"Shop"} />
-            <MenuItem title={"Sign In"} />
+            <MenuItem hasHover title={"Shop"} />
+            <MenuItem hasHover title={"Sign In"} />
           </div>
           <MenuItem icon={<IoIosCart size={26} />} />
         </div>
