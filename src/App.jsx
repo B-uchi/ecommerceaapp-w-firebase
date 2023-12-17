@@ -12,7 +12,7 @@ import Shop from "./pages/shop/shop";
 function App() {
   return (
     <Router>
-      <div className="bg-[#f1f1f1]">
+      <div className="bg-[#f1f1f1] h-[100vh]">
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
