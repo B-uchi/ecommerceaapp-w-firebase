@@ -1,8 +1,16 @@
 import React from 'react'
+import PageHeader from '../../components/PageHeader'
+import ProductList from '../../components/ProductList'
+import SHOP_DATA from '../shop/shop_data'
+
 
 const Hats = () => {
+  const filtered_data = SHOP_DATA.filter((category)=> category.title.toLowerCase()=='hats') 
   return (
-    <div>Hats</div>
+    <div>
+      <PageHeader title={'Hats'}/>
+      <ProductList products={filtered_data[0].items}/>
+    </div>
   )
 }
 
