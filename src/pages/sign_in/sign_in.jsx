@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import FormInput from "../../components/FormInput";
 import CustomBtn from "../../components/CustomBtn";
-import { auth, provider } from "../../firebase/firebaseUtil";
-import { signInWithPopup } from "firebase/auth";
+import { auth, db, provider } from "../../firebase/firebaseUtil";
+import {
+  createUserWithEmailAndPassword,
+  getAdditionalUserInfo,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { toast, Toaster } from "sonner";
+import { doc, setDoc } from "firebase/firestore";
 
 const Sign_in = ({ currentUser }) => {
   const [page, setPage] = useState("login");
@@ -13,24 +19,86 @@ const Sign_in = ({ currentUser }) => {
   const [displayName, setDisplayName] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const createPopup = () => {
-    setLoading(true)
-    currentUser
-      ? toast("Already signed in. Sign out to proceed")
-      : signInWithPopup(auth, provider)
-          .then((result) => {
-            setLoading(false)
-            toast.success('Signed in successfully')
-          })
-          .catch((e) => {
-            setLoading(false)
-            console.log("An error occured");
-          });
+  const signInWithGoogle = () => {
+    setLoading(true);
+    if (currentUser) {
+      setLoading(false);
+      toast("Already signed in");
+    } else {
+      signInWithPopup(auth, provider)
+        .then(async (result) => {
+          if (getAdditionalUserInfo(result).isNewUser) {
+            let display_name = prompt("Enter a display name", "John Doe");
+            while (display_name === null) {
+              display_name = prompt("Enter a display name", "John Doe");
+            }
+            try {
+              const userDoc = await setDoc(doc(db, "users", result.user.uid), {
+                id: result.user.uid,
+                displayName: display_name,
+                email: result.user.email,
+              });
+              toast.success("Signed in successfully");
+              console.log("Added to db");
+              setLoading(false);
+            } catch (error) {
+              setLoading(false);
+              toast.error(e);
+            }
+          } else {
+            toast.success("Signed in successfully");
+            setLoading(false);
+          }
+        })
+        .catch((e) => {
+          setLoading(false);
+          console.log(e);
+        });
+    }
+  };
+  const signIn = () => {
+    setLoading(true);
+    if (currentUser) {
+      setLoading(false);
+      toast("Already signed in");
+    } else {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          setLoading(false);
+          toast.success("Successfully logged in");
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.log(errorMessage);
+          setLoading(false);
+          toast.error(errorMessage);
+        });
+    }
+  };
+  const register = () => {
+    setLoading(true);
+    if (currentUser) {
+      setLoading(false);
+      toast("Sign out to proceed");
+    } else {
+      if (password === confirmPassword) {
+        if (displayName != null) {
+        } else {
+          console.log("No display name provided");
+          toast.error("Provide a display name");
+        }
+      } else {
+        toast.error("Passwords do not match");
+      }
+    }
   };
   return (
     <section className="w-[100%] h-[91.5vh] relative flex justify-center items-center">
       {loading ? (
         <div className="bg-[rgba(255,255,255,0.8)] flex justify-center items-center absolute w-full h-[90vh] z-10">
+          <Toaster className="z-50" position="top-right" richColors />
           <div className="spinner">
             <div></div>
             <div></div>
@@ -46,7 +114,7 @@ const Sign_in = ({ currentUser }) => {
         </div>
       ) : (
         <div className="">
-          <Toaster position="top-right" richColors />
+          <Toaster className="z-50" position="top-right" richColors />
           {page === "login" ? (
             // Login card
             <div className="bg-white rounded-md p-3 w-full md:w-[500px]">
@@ -62,7 +130,7 @@ const Sign_in = ({ currentUser }) => {
                   />
                   <FormInput
                     placeholder={"Enter your password..."}
-                    type={"email"}
+                    type={"password"}
                     required
                     value={password}
                     onChange={setPassword}
@@ -73,10 +141,11 @@ const Sign_in = ({ currentUser }) => {
                     value={"Sign In"}
                     textColor={"white"}
                     bgColor={"black"}
+                    onClick={() => signIn()}
                   />
                   <CustomBtn
                     value={"Sign in with Google"}
-                    onClick={() => createPopup()}
+                    onClick={() => signInWithGoogle()}
                     textColor={"white"}
                     bgColor={"blue"}
                   />
@@ -131,6 +200,7 @@ const Sign_in = ({ currentUser }) => {
                     value={"Sign Up"}
                     textColor={"white"}
                     bgColor={"black"}
+                    onClick={register}
                   />
                 </div>
                 <p

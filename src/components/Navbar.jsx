@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 
 const Navbar = ({ currentUser }) => {
   return (
-    <nav className="w-full sticky top-0 bg-[#010409] flex justify-center">
+    <nav className="w-full sticky top-0 z-10 bg-[#010409] flex justify-center">
       <div className="container p-3 flex justify-between items-center">
         <Link to={"/"}>
           <NavTitle title={"Sub Urban"} />
@@ -18,7 +18,7 @@ const Navbar = ({ currentUser }) => {
               <MenuItem hasHover title={"Shop"} />
             </Link>
             {currentUser ? (
-              <MenuItem hasHover click={signOut} title={"Sign Out"} />
+              <MenuItem hasHover onClick={(auth)=>signOut(auth)} title={"Sign Out"} />
             ) : (
               <Link to={"/sign_in"}>
                 <MenuItem hasHover title={"Sign In"} />

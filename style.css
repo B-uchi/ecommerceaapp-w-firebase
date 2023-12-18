@@ -114,3 +114,9 @@
     transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1.5%));
   }
 }
+.product-overlay{
+  display: none;
+}
+.product-item:hover > .product-overlay{
+  display: flex;
+}

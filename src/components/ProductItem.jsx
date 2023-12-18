@@ -1,19 +1,20 @@
 import React from "react";
+import { BiSolidCartAdd } from "react-icons/bi";
 
 const ProductItem = (props) => {
-  const { id, name, imageUrl, price } = props.product;
+  const { name, imageUrl, price } = props.product;
   return (
     <div className="mx-auto flex">
-      <div className=" border-l-[1px] border-r-[1px] border-t-[1px] border-black">
-        <img className="w-[300px] h-[350px]" src={imageUrl} alt="product_img" />
-        <div className="">
-          <p className="flex p-2 font-bold justify-between">
-            {name} <span>${price}</span>
-          </p>
-          <div className="flex mt-3 justify-center">
-            <button className="bg-[#010409] w-full text-white p-2 px-3 ">
-              Add To Cart
-            </button>
+      <div className="relative border-[3px] border-black bg-white product-item">
+        <img className="w-[300px] h-[390px]" src={imageUrl} alt="product_img" />
+        <div className="bg-[rgba(0,0,0,0.7)] h-full w-full absolute top-0 flex justify-center items-center product-overlay">
+          <div className="">
+            <p className="flex flex-col p-2 text-white font-bold items-center text-xl">
+              {name} <span>${price}</span>
+            </p>
+            <div className="cursor-pointer text-white hover:text-black p-3 rounded-full hover:bg-white">
+              <BiSolidCartAdd size={40} className="mx-auto" />
+            </div>
           </div>
         </div>
       </div>
