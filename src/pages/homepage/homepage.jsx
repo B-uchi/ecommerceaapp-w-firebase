@@ -1,15 +1,16 @@
-import React from 'react'
-import Navbar from '../../components/Navbar'
-import CategoryList from '../../components/CategoryList'
+import React from "react";
+import Navbar from "../../components/Navbar";
+import CategoryList from "../../components/CategoryList";
 
 const Homepage = () => {
   return (
-    <>
-        <main>
-            <CategoryList/>
-        </main>
-    </>
-  )
-}
+    <section>
+      <br />
+      <main>
+        <CategoryList />
+      </main>
+    </section>
+  );
+};
 
-export default Homepage
+export default Homepage;

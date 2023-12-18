@@ -85,12 +85,38 @@ const Sign_in = ({ currentUser }) => {
     } else {
       if (password === confirmPassword) {
         if (displayName != null) {
+          createUserWithEmailAndPassword(auth, email, password)
+            .then(async (userCredential) => {
+              try {
+                const user = userCredential.user;
+                const userDoc = await setDoc(doc(db, "users", user.uid), {
+                  id: user.uid,
+                  displayName: displayName,
+                  email: user.email,
+                });
+                setLoading(false);
+                toast.success("Account created successfully");
+              } catch (error) {
+                setLoading(false);
+                toast.error(e);
+              }
+              // ...
+            })
+            .catch((error) => {
+              const errorMessage = error.message;
+              setLoading(false);
+              toast.error(errorMessage);
+              console.log(errorMessage);
+            });
         } else {
+          setLoading(false);
+
           console.log("No display name provided");
           toast.error("Provide a display name");
         }
       } else {
         toast.error("Passwords do not match");
+        setLoading(false);
       }
     }
   };

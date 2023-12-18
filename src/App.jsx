@@ -33,7 +33,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="bg-[#f1f1f1]">
+        <div className="bg-white">
           <Navbar currentUser={this.state.currentUser} />
           <Routes>
             <Route path="/" element={<Homepage />} />

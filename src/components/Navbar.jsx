@@ -7,8 +7,8 @@ import { signOut } from "firebase/auth";
 
 const Navbar = ({ currentUser }) => {
   return (
-    <nav className="w-full sticky top-0 z-10 bg-[#010409] flex justify-center">
-      <div className="container p-3 flex justify-between items-center">
+    <nav className="w-full sticky top-0 z-10 bg-white flex justify-center">
+      <div className="container border-black border-b-[1px] p-3 flex justify-between items-center">
         <Link to={"/"}>
           <NavTitle title={"Sub Urban"} />
         </Link>
@@ -25,7 +25,7 @@ const Navbar = ({ currentUser }) => {
               </Link>
             )}
           </div>
-          <MenuItem icon={<IoIosCart size={26} />} />
+          <MenuItem icon={<IoIosCart size={26} color="black"/>} />
         </div>
       </div>
     </nav>

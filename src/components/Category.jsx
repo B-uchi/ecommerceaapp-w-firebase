@@ -11,7 +11,6 @@ const Category = (props) => {
       <Link to={linkUrl}>
         <p className="p-3 label cursor-pointer bg-[rgba(255,255,255,0.7)] rounded-sm flex flex-col justify-center items-center">
           {title.toUpperCase()}{" "}
-          <span className="underline text-sm">Shop now</span>
         </p>
       </Link>
     </div>
