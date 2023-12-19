@@ -10,6 +10,7 @@ import Sneakers from "./pages/sneakers/sneakers_page";
 import Shop from "./pages/shop/shop";
 import Sign_in from "./pages/sign_in/sign_in";
 import { auth } from "./firebase/firebaseUtil";
+import AnimatedCursor from "react-animated-cursor";
 
 class App extends React.Component {
   constructor() {
@@ -33,6 +34,20 @@ class App extends React.Component {
   render() {
     return (
       <Router>
+        <AnimatedCursor
+          innerSize={8}
+          outerSize={35}
+          innerScale={1}
+          outerScale={2}
+          outerAlpha={0}
+          hasBlendMode={true}
+          innerStyle={{
+            backgroundColor: 'rgb(152, 64, 127)'
+          }}
+          outerStyle={{
+            border: '3px solid rgb(152, 64, 127)'
+          }}
+        />
         <div className="bg-white">
           <Navbar currentUser={this.state.currentUser} />
           <Routes>

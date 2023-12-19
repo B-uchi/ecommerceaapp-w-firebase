@@ -3,7 +3,7 @@ import { GoogleAuthProvider, getAuth } from "firebase/auth";
 import {getFirestore} from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB7NJWE6QFAJC5sVBhOOSKp6UpXjS7iFeU",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "suburban-ecommerce-app.firebaseapp.com",
   projectId: "suburban-ecommerce-app",
   storageBucket: "suburban-ecommerce-app.appspot.com",
