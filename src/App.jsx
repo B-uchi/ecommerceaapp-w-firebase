@@ -11,7 +11,10 @@ import Shop from "./pages/shop/shop";
 import Sign_in from "./pages/sign_in/sign_in";
 import { auth } from "./firebase/firebaseUtil";
 import AnimatedCursor from "react-animated-cursor";
+import dotenv from "dotenv"
 
+
+dotenv.config();
 class App extends React.Component {
   constructor() {
     super();

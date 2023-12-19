@@ -2,8 +2,9 @@ import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
 import {getFirestore} from "firebase/firestore";
 
+
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  apiKey: process.env.VITE_FIREBASE_API_KEY,
   authDomain: "suburban-ecommerce-app.firebaseapp.com",
   projectId: "suburban-ecommerce-app",
   storageBucket: "suburban-ecommerce-app.appspot.com",
