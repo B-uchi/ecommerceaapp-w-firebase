@@ -1,6 +1,11 @@
 import React from "react";
 import Homepage from "./pages/homepage/homepage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hats from "./pages/hats/hats_page";
 import Women from "./pages/women/women_page";
@@ -21,7 +26,6 @@ class App extends React.Component {
     this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
     });
-    
   }
   componentWillUnmount() {
     this.unsubscribeFromAuth();
@@ -54,7 +58,17 @@ class App extends React.Component {
             <Route path="/shop/sneakers" element={<Sneakers />} />
             <Route path="/shop/jackets" element={<Jacket />} />
             <Route path="/shop" element={<Shop />} />
-            <Route path="/sign_in" element={<Sign_in />} />
+            <Route
+              exact
+              path="/sign_in"
+              element={
+                this.props.currentUser ? (
+                  <Navigate to={"/"} replace={true} />
+                ) : (
+                  <Sign_in />
+                )
+              }
+            />
           </Routes>
         </div>
       </Router>
