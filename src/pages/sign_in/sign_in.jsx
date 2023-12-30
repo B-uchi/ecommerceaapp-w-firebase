@@ -12,7 +12,6 @@ import {
 import { toast, Toaster } from "sonner";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
 
 const Sign_in = ({ currentUser }) => {
   const [page, setPage] = useState("login");

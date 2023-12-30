@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import Homepage from "./pages/homepage/homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
