@@ -5,6 +5,7 @@ import { IoIosCart } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { connect } from "react-redux";
+import { auth } from "../firebase/firebaseUtil";
 
 const Navbar = ({ currentUser }) => {
   return (
@@ -19,7 +20,7 @@ const Navbar = ({ currentUser }) => {
               <MenuItem hasHover title={"Shop"} />
             </Link>
             {currentUser ? (
-              <MenuItem hasHover onClick={(auth)=>signOut(auth)} title={"Sign Out"} />
+              <MenuItem hasHover onClick={()=>signOut(auth)} title={"Sign Out"} />
             ) : (
               <Link to={"/sign_in"}>
                 <MenuItem hasHover title={"Sign In"} />
@@ -33,8 +34,8 @@ const Navbar = ({ currentUser }) => {
   );
 };
 
-const mapStateTopProps = (state) => ({
+const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
-});
+}); 
 
-export default connect(mapStateTopProps)(Navbar);
+export default connect(mapStateToProps)(Navbar);

@@ -1,5 +1,4 @@
 import React from "react";
-import { auth } from "../firebase/firebaseUtil";
 
 const MenuItem = (props) => {
   const style = props.hasHover
@@ -8,9 +7,7 @@ const MenuItem = (props) => {
   return (
     <div
       className={style}
-      onClick={
-        props.onClick && props.onClick ? () => props.onClick(auth) : () => {}
-      }
+      onClick={props.onClick ? props.onClick : null}
     >
       {props.title ? props.title : props.icon}
     </div>

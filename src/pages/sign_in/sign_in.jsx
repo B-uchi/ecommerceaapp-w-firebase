@@ -10,6 +10,8 @@ import {
 } from "firebase/auth";
 import { toast, Toaster } from "sonner";
 import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Sign_in = ({ currentUser }) => {
   const [page, setPage] = useState("login");
@@ -18,7 +20,9 @@ const Sign_in = ({ currentUser }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
+  
   const signInWithGoogle = () => {
     setLoading(true);
     if (currentUser) {
@@ -41,6 +45,9 @@ const Sign_in = ({ currentUser }) => {
               toast.success("Signed in successfully");
               console.log("Added to db");
               setLoading(false);
+              setTimeout(() => {
+                navigate("/");
+              }, 1000);
             } catch (error) {
               setLoading(false);
               toast.error(e);
@@ -48,6 +55,9 @@ const Sign_in = ({ currentUser }) => {
           } else {
             toast.success("Signed in successfully");
             setLoading(false);
+            setTimeout(() => {
+              navigate("/");
+            }, 1000);
           }
         })
         .catch((e) => {
@@ -68,6 +78,9 @@ const Sign_in = ({ currentUser }) => {
           const user = userCredential.user;
           setLoading(false);
           toast.success("Successfully logged in");
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
         })
         .catch((error) => {
           const errorMessage = error.message;
@@ -243,5 +256,8 @@ const Sign_in = ({ currentUser }) => {
     </section>
   );
 };
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
 
-export default Sign_in;
+export default connect(mapStateToProps)(Sign_in);

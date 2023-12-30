@@ -11,23 +11,21 @@ import Shop from "./pages/shop/shop";
 import Sign_in from "./pages/sign_in/sign_in";
 import { auth } from "./firebase/firebaseUtil";
 import AnimatedCursor from "react-animated-cursor";
+import { setCurrentUser } from "./redux/reducers/userReducer/user.actions";
+import { connect } from "react-redux";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      currentUser: null,
-    };
-  }
-
+ 
   unsubscribeFromAuth = null;
   componentDidMount() {
+    const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
+      setCurrentUser(user);
     });
   }
   componentWillUnmount() {
     this.unsubscribeFromAuth();
+    
   }
 
   render() {
@@ -48,7 +46,7 @@ class App extends React.Component {
           }}
         />
         <div className="bg-white">
-          <Navbar />
+          <Navbar/>
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/shop/hats" element={<Hats />} />
@@ -68,4 +66,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(null, mapDispatchToProps)(App);
