@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Category from "./Category";
 
 const CategoryList = () => {
+  
   const [categories, setCategories] = useState([
     {
       title: "hats",

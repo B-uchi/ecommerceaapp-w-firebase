@@ -11,10 +11,7 @@ import Shop from "./pages/shop/shop";
 import Sign_in from "./pages/sign_in/sign_in";
 import { auth } from "./firebase/firebaseUtil";
 import AnimatedCursor from "react-animated-cursor";
-import dotenv from "dotenv"
 
-
-dotenv.config();
 class App extends React.Component {
   constructor() {
     super();
@@ -24,7 +21,6 @@ class App extends React.Component {
   }
 
   unsubscribeFromAuth = null;
-
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
       this.setState({ currentUser: user });
@@ -40,7 +36,7 @@ class App extends React.Component {
         <AnimatedCursor
           innerSize={8}
           outerSize={35}
-          innerScale={1}
+          innerScale={3}
           outerScale={2}
           outerAlpha={0}
           hasBlendMode={true}
@@ -52,7 +48,7 @@ class App extends React.Component {
           }}
         />
         <div className="bg-white">
-          <Navbar currentUser={this.state.currentUser} />
+          <Navbar />
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/shop/hats" element={<Hats />} />
@@ -63,7 +59,7 @@ class App extends React.Component {
             <Route path="/shop" element={<Shop />} />
             <Route
               path="/sign_in"
-              element={<Sign_in currentUser={this.state.currentUser} />}
+              element={<Sign_in />}
             />
           </Routes>
         </div>

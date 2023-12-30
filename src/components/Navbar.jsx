@@ -4,6 +4,7 @@ import MenuItem from "./MenuItem";
 import { IoIosCart } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
+import { connect } from "react-redux";
 
 const Navbar = ({ currentUser }) => {
   return (
@@ -32,4 +33,8 @@ const Navbar = ({ currentUser }) => {
   );
 };
 
-export default Navbar;
+const mapStateTopProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateTopProps)(Navbar);
