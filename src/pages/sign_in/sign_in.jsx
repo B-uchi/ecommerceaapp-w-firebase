@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import FormInput from "../../components/FormInput";
 import CustomBtn from "../../components/CustomBtn";
 import { auth, db, provider } from "../../firebase/firebaseUtil";
@@ -244,4 +245,8 @@ const Sign_in = ({ currentUser }) => {
   );
 };
 
-export default Sign_in;
+const mapStateTopProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateTopProps)(Sign_in);
