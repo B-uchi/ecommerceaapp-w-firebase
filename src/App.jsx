@@ -13,15 +13,15 @@ import Shop from "./pages/shop/shop";
 import Sign_in from "./pages/sign_in/sign_in";
 import { auth } from "./firebase/firebaseUtil";
 import AnimatedCursor from "react-animated-cursor";
-import { doc, getDoc } from "firebase/firestore";
+import dotenv from "dotenv"
+
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
     const {setCurrentUser} = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      setCurrentUser({ currentUser: user });
-      console.log(user);
+      this.setState({ currentUser: user });
     });
     
   }
