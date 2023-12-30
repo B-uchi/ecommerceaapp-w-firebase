@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setCurrentUser } from "./redux/reducers/userReducer/user.actions";
 import Homepage from "./pages/homepage/homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
