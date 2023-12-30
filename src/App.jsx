@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/reducers/userReducer/user.actions";
 import Homepage from "./pages/homepage/homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -13,17 +15,11 @@ import { auth } from "./firebase/firebaseUtil";
 import AnimatedCursor from "react-animated-cursor";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      currentUser: null,
-    };
-  }
-
   unsubscribeFromAuth = null;
   componentDidMount() {
+    const {setCurrentUser} = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
+      setCurrentUser({ currentUser: user });
     });
   }
   componentWillUnmount() {
@@ -41,10 +37,10 @@ class App extends React.Component {
           outerAlpha={0}
           hasBlendMode={true}
           innerStyle={{
-            backgroundColor: 'rgb(152, 64, 127)'
+            backgroundColor: "rgb(152, 64, 127)",
           }}
           outerStyle={{
-            border: '3px solid rgb(152, 64, 127)'
+            border: "3px solid rgb(152, 64, 127)",
           }}
         />
         <div className="bg-white">
@@ -57,10 +53,7 @@ class App extends React.Component {
             <Route path="/shop/sneakers" element={<Sneakers />} />
             <Route path="/shop/jackets" element={<Jacket />} />
             <Route path="/shop" element={<Shop />} />
-            <Route
-              path="/sign_in"
-              element={<Sign_in />}
-            />
+            <Route path="/sign_in" element={<Sign_in />} />
           </Routes>
         </div>
       </Router>
@@ -68,4 +61,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(null, mapDispatchToProps)(App);
