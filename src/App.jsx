@@ -15,7 +15,6 @@ import { setCurrentUser } from "./redux/reducers/userReducer/user.actions";
 import { connect } from "react-redux";
 
 class App extends React.Component {
- 
   unsubscribeFromAuth = null;
   componentDidMount() {
     const { setCurrentUser } = this.props;
@@ -25,7 +24,6 @@ class App extends React.Component {
   }
   componentWillUnmount() {
     this.unsubscribeFromAuth();
-    
   }
 
   render() {
@@ -39,14 +37,14 @@ class App extends React.Component {
           outerAlpha={0}
           hasBlendMode={true}
           innerStyle={{
-            backgroundColor: 'rgb(152, 64, 127)'
+            backgroundColor: "rgb(152, 64, 127)",
           }}
           outerStyle={{
-            border: '3px solid rgb(152, 64, 127)'
+            border: "3px solid rgb(152, 64, 127)",
           }}
         />
         <div className="bg-white">
-          <Navbar/>
+          <Navbar />
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/shop/hats" element={<Hats />} />
@@ -55,10 +53,7 @@ class App extends React.Component {
             <Route path="/shop/sneakers" element={<Sneakers />} />
             <Route path="/shop/jackets" element={<Jacket />} />
             <Route path="/shop" element={<Shop />} />
-            <Route
-              path="/sign_in"
-              element={<Sign_in />}
-            />
+            <Route path="/sign_in" element={<Sign_in />} />
           </Routes>
         </div>
       </Router>
@@ -66,8 +61,12 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
