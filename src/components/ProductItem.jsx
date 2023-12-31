@@ -1,4 +1,6 @@
 import React from "react";
+import { addTocart } from "../redux/cart/cart.actions";
+import { connect } from "react-redux";
 
 const ProductItem = (props) => {
   const { name, imageUrl, price } = props.product;
@@ -12,7 +14,10 @@ const ProductItem = (props) => {
           <p className="flex flex-col p-2 font-bold items-start text-md md:text-xl">
             Name: {name} <span>Price: ${price}</span>
           </p>
-          <div className="cursor-pointer hover:text-white p-3 rounded-md bg-[#f1f1f1] text-center font-bold hover:bg-black">
+          <div
+            onClick={() => props.addTocart(props.product)}
+            className="cursor-pointer hover:text-white p-3 rounded-md bg-[#f1f1f1] text-center font-bold hover:bg-black"
+          >
             Add to cart
           </div>
         </div>
@@ -21,4 +26,8 @@ const ProductItem = (props) => {
   );
 };
 
-export default ProductItem;
+const mapDispatchToProps = (dispatch) => ({
+  addTocart: (item) => dispatch(addTocart(item)),
+});
+
+export default connect(null, mapDispatchToProps)(ProductItem);

@@ -143,13 +143,32 @@
   }
 }
 
+/* FILEPATH: /c:/Users/Buchi/Documents/Web Dev/react/ecommerce-w-firebase/ecommerceapp-w-firebase/style.css */
+
+/* BEGIN: Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  margin-right: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black;
+  
+}
+/* END: Custom Scrollbar */
+
+
 @media (max-width: 430px) {
   .product-list > div:nth-child(even) {
     flex-direction: column;
   }
 }
 @media (max-width: 430px) {
-  .product-list > div{
+  .product-list > div {
     flex-direction: column;
   }
 }

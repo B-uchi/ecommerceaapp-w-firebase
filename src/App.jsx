@@ -34,7 +34,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <AnimatedCursor
+        {/* <AnimatedCursor
           innerSize={8}
           outerSize={35}
           innerScale={3}
@@ -47,7 +47,7 @@ class App extends React.Component {
           outerStyle={{
             border: "3px solid rgb(152, 64, 127)",
           }}
-        />
+        /> */}
         <div className="bg-white">
           <Navbar />
           <Routes>
