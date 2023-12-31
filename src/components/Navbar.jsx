@@ -1,16 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import NavTitle from "./NavTitle";
 import MenuItem from "./MenuItem";
-import { IoIosCart } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { connect } from "react-redux";
 import { auth } from "../firebase/firebaseUtil";
+import CartIcon from "./CartIcon";
+import CartDropDown from "./CartDropDown";
 
 const Navbar = ({ currentUser }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
   return (
     <nav className="w-full sticky top-0 z-10 bg-white flex justify-center">
-      <div className="container border-black border-b-[1px] p-3 flex justify-between items-center">
+      <div className="w-full border-black border-b-[1px] p-3 flex justify-between items-center relative">
         <Link to={"/"}>
           <NavTitle title={"Sub Urban"} />
         </Link>
@@ -27,8 +29,11 @@ const Navbar = ({ currentUser }) => {
               </Link>
             )}
           </div>
-          <MenuItem icon={<IoIosCart size={26} color="black"/>} />
+          <CartIcon onClick={setShowDropdown} />
         </div>
+        {
+          showDropdown ? <CartDropDown showDropdown={showDropdown}/> : null
+        }
       </div>
     </nav>
   );

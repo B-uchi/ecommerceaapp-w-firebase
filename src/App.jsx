@@ -16,7 +16,7 @@ import Shop from "./pages/shop/shop";
 import Sign_in from "./pages/sign_in/sign_in";
 import { auth } from "./firebase/firebaseUtil";
 import AnimatedCursor from "react-animated-cursor";
-import { setCurrentUser } from "./redux/reducers/userReducer/user.actions";
+import { setCurrentUser } from "./redux/user/user.actions";
 import { connect } from "react-redux";
 
 class App extends React.Component {
