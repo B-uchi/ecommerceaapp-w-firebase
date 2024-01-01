@@ -4,9 +4,8 @@ import CartItem from "./CartItem";
 import { decreaseItemQty, increaseItemQty, removeItem } from "../redux/cart/cart.actions";
 
 const CartDropDown = ({ cartItems, cartItemsCount, totalCartAmount, increaseItemQty, decreaseItemQty, removeItem}) => {
-    console.log(cartItems)
   return (
-    <div className="absolute flex justify-center items-center cart-dropdown z-50 right-0 top-[110%] w-[90%] md:w-[40%] h-[90vh] p-3 bg-[#d6d6d6]">
+    <div className="absolute flex justify-center items-center cart-dropdown z-50 right-0 top-[110%] w-[90%] md:w-[40%] h-[90vh] p-1 bg-[#d6d6d6]">
       {cartItemsCount >= 1 ? (
         <div className="container h-full flex flex-col relative p-2">
           <div className="sticky top-0 flex flex-col">
