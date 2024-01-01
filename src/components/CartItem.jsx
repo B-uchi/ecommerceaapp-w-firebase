@@ -10,7 +10,7 @@ const CartItem = ({
 }) => {
   const product = item.product;
   return (
-    <div className="flex justify-between items-center p-2 px-0 pr-2 border-b-[1px] border-solid border-black text-sm">
+    <div className="flex justify-between items-center p-2 px-0 pr-2 border-b-[1px] border-solid border-black text-sm ">
       <div className="md:flex flex-auto">
         <div className="flex gap-2">
           <img className="w-16 h-16" src={product.imageUrl} alt="" />

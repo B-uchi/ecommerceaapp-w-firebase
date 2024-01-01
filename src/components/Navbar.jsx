@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import NavTitle from "./NavTitle";
 import MenuItem from "./MenuItem";
 import { Link } from "react-router-dom";
@@ -41,7 +42,19 @@ const Navbar = ({ currentUser }) => {
           </div>
           <CartIcon onClick={setShowDropdown} />
         </div>
-        {showDropdown ? <CartDropDown showDropdown={showDropdown} /> : null}
+        <AnimatePresence>
+          {showDropdown ? (
+            <motion.div
+              initial={{ opacity: 0, x: 500 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 500 }}
+              transition={{ duration: 0.2 }}
+              className="absolute right-0 top-[110%] w-[90%] md:w-[40%] "
+            >
+              <CartDropDown showDropdown={showDropdown} key={"drodown"} />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
     </nav>
   );
