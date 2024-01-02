@@ -59,7 +59,6 @@ const CartDropDown = ({
 };
 
 const mapStateToProps = ({cart}) => {
-  console.log('i am being called');
   return {
     cartItems: cart.cartItems,
     cartItemsCount: cart.cartItemsCount,
