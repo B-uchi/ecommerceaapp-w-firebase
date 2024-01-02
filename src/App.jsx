@@ -7,11 +7,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Hats from "./pages/hats/hats_page";
-import Women from "./pages/women/women_page";
-import Jacket from "./pages/jackets/jacket_page";
-import Mens from "./pages/men/mens_page";
-import Sneakers from "./pages/sneakers/sneakers_page";
 import Shop from "./pages/shop/shop";
 import Sign_in from "./pages/sign_in/sign_in";
 import { auth } from "./firebase/firebaseUtil";
