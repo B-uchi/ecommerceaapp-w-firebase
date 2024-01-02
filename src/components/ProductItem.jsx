@@ -8,7 +8,6 @@ const ProductItem = (props) => {
 
   const addTocart = (item) => {
     if (props.currentUser) {
-      console.log("yeah");
       props.addTocart(item);
       toast.success("Added to cart");
     } else {

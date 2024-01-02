@@ -1,9 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import CartItem from "./CartItem";
-import { decreaseItemQty, increaseItemQty, removeItem } from "../redux/cart/cart.actions";
+import {
+  decreaseItemQty,
+  increaseItemQty,
+  removeItem,
+} from "../redux/cart/cart.actions";
 
-const CartDropDown = ({ cartItems, cartItemsCount, totalCartAmount, increaseItemQty, decreaseItemQty, removeItem}) => {
+const CartDropDown = ({
+  cartItems,
+  cartItemsCount,
+  totalCartAmount,
+  increaseItemQty,
+  decreaseItemQty,
+  removeItem,
+}) => {
   return (
     <div className="flex justify-center items-center cart-dropdown z-50 h-[90vh] p-1 bg-[#d1d1d1] rounded-md">
       {cartItemsCount >= 1 ? (
@@ -47,16 +58,19 @@ const CartDropDown = ({ cartItems, cartItemsCount, totalCartAmount, increaseItem
   );
 };
 
-const mapStateToProps = (state) => ({
-  cartItems: state.cart.cartItems,
-  cartItemsCount: state.cart.cartItemsCount,
-  totalCartAmount: state.cart.totalCartAmount,
-});
+const mapStateToProps = ({cart}) => {
+  console.log('i am being called');
+  return {
+    cartItems: cart.cartItems,
+    cartItemsCount: cart.cartItemsCount,
+    totalCartAmount: cart.totalCartAmount,
+  };
+};
 
-const mapDispatchToProps = (dispatch)=>({
-    increaseItemQty: (item) => dispatch(increaseItemQty(item)),
-    decreaseItemQty: (item) => dispatch(decreaseItemQty(item)),
-    removeItem: (item) => dispatch(removeItem(item)),
+const mapDispatchToProps = (dispatch) => ({
+  increaseItemQty: (item) => dispatch(increaseItemQty(item)),
+  decreaseItemQty: (item) => dispatch(decreaseItemQty(item)),
+  removeItem: (item) => dispatch(removeItem(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartDropDown);

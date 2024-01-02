@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 
 const CartIcon = ({ onClick, cartItemsCount }) => {
-  console.log(cartItemsCount);
   return (
     <div className="cursor-pointer relative" onClick={() => onClick((prev) => !prev)}>
       <RiShoppingCartLine size={25} color="black" />
